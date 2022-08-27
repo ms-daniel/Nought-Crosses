@@ -17,6 +17,9 @@ import java.awt.Insets;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
+
+import IA.VeIA;
+
 import javax.swing.border.CompoundBorder;
 import java.awt.Color;
 import javax.swing.UIManager;
@@ -28,6 +31,7 @@ import java.io.IOException;
 
 public class tabuleiro extends JPanel {
 
+	private VeIA inteligencia;
 	private Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
 	private Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 	private ImageIcon cross = new ImageIcon("resources\\cross1.png");
@@ -50,7 +54,13 @@ public class tabuleiro extends JPanel {
 	 * Create the panel.
 	 */
 	public tabuleiro() {
-
+		try {
+			inteligencia = new VeIA();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		setMinimumSize(new Dimension(600, 600));
 		setMaximumSize(new Dimension(600, 600));
 		setLocale(new Locale("pt", "BR"));
@@ -421,8 +431,7 @@ public class tabuleiro extends JPanel {
 	 * IA joga
 	 */
 	private void playIA() {
-		//metodo para enviar string do estado para ia = getState();
-		//metodo para receber jogada da IA
+		moveIA(inteligencia.jogue(getState(), moveCount()));
 		//moveIA(posicao que a ia escolheu);
 		System.out.println(getState() + moveCount());
 		unblockButton(); //desbloqueia botões
@@ -449,6 +458,7 @@ public class tabuleiro extends JPanel {
 	 * com algum dos botões
 	 */
 	private void moveIA(int pos) {
+		System.out.println(pos);
 		switch(pos) {
 			case 0:
 				Button1.setIcon(cross);
