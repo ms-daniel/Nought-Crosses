@@ -180,7 +180,7 @@ public class VeIA {
                 for(i = 0; i < c_jogadas; i++){
                     for(int c = 0; c < c_vitorias; c++){
                         grau = mapa_prox_jogada[i].matches(mapa_vitoria[c].label);
-                        if(grau == numJogadas && mapa_vitoria[c].numJogadas == numJogadas){
+                        if(grau == numJogadas+1 && mapa_vitoria[c].numJogadas == numJogadas+1){
                             for(int z = 0; z < 9; z++){
                                 if((label.charAt(z) == meuCaractere ^ mapa_vitoria[c].label.charAt(z) == meuCaractere) && (mapa_vitoria[c].label.charAt(z) != '.')){
                                     return z;
