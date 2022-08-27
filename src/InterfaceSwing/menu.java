@@ -33,20 +33,20 @@ public class menu extends JPanel {
 		
 		//cria label para por imagem da opção jogar
 		playLabel = new JLabel("");
-		playLabel.setIcon(new ImageIcon("E:\\Downloads(HD)\\projetos\\java\\noughts and crosses\\resources\\jogar.png"));
+		playLabel.setIcon(new ImageIcon("resources\\jogar.png"));
 		playLabel.setBounds(new Rectangle(1, 0, 200, 100));
 		playLabel.setBounds(198, 226, 205, 65);
 		add(playLabel);
 		
 		////cria label para por imagem da opção sair
 		JLabel exitLabel = new JLabel("");
-		exitLabel.setIcon(new ImageIcon("E:\\Downloads(HD)\\projetos\\java\\noughts and crosses\\resources\\sair.png"));
+		exitLabel.setIcon(new ImageIcon("resources\\sair.png"));
 		exitLabel.setBounds(new Rectangle(1, 0, 200, 100));
 		exitLabel.setBounds(230, 312, 205, 65);
 		add(exitLabel);
 		
 		JLabel backgroundLabel = new JLabel("");
-		backgroundLabel.setIcon(new ImageIcon("E:\\Downloads(HD)\\projetos\\java\\noughts and crosses\\resources\\menu.jpg"));
+		backgroundLabel.setIcon(new ImageIcon("resources\\menu.jpg"));
 		backgroundLabel.setBounds(0, 0, 600, 600);
 		add(backgroundLabel);
 		
