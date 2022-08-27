@@ -2,12 +2,15 @@ package InterfaceSwing;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Insets;
@@ -21,6 +24,7 @@ import java.awt.SystemColor;
 import java.awt.Button;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class tabuleiro extends JPanel {
 
@@ -172,11 +176,22 @@ public class tabuleiro extends JPanel {
 		Button1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(no[0][0] == '.' ) {
+				if(no[0][0] == '.' && !isBlock()) {
 					Button1.setIcon(nought);
 					no[0][0] = 'O';
 					blockButton();
+					playIA();
 				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(no[0][0] == '.' )
+					Button1.setIcon(nought);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(no[0][0] == '.' )
+					Button1.setIcon(null);
 			}
 		});
 
@@ -184,85 +199,174 @@ public class tabuleiro extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(no[0][1] == '.' ) {
+				if(no[0][1] == '.' && !isBlock()) {
 					Button2.setIcon(nought);
 					no[0][1] = 'O';
 					blockButton();
+					playIA();
 				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(no[0][1] == '.' )
+					Button2.setIcon(nought);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(no[0][1] == '.' )
+					Button2.setIcon(null);
 			}
 		});
 		Button3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				if(no[0][2] == '.' ) {
+				if(no[0][2] == '.' && !isBlock()) {
 					Button3.setIcon(nought);
 					no[0][2] = 'O';
 					blockButton();
+					playIA();
 				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(no[0][2] == '.' )
+					Button3.setIcon(nought);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(no[0][2] == '.' )
+					Button3.setIcon(null);
 			}
 		});
 		Button4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(no[1][0] == '.' ) {
+				if(no[1][0] == '.' && !isBlock() ) {
 					Button4.setIcon(nought);
 					no[1][0] = 'O';
 					blockButton();
+					playIA();
 				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(no[1][0] == '.' )
+					Button4.setIcon(nought);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(no[1][0] == '.' )
+					Button4.setIcon(null);
 			}
 		});
 		
 		Button5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(no[1][1] == '.' ) {
+				if(no[1][1] == '.' && !isBlock()) {
 					Button5.setIcon(nought);
 					no[1][1] = 'O';
 					blockButton();
+					playIA();
 				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(no[1][1] == '.' )
+					Button5.setIcon(nought);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(no[1][1] == '.' )
+					Button5.setIcon(null);
 			}
 		});
 		Button6.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(no[1][2] == '.' ) {
+				if(no[1][2] == '.' && !isBlock()) {
 					Button6.setIcon(nought);
 					no[1][2] = 'O';
 					blockButton();
+					playIA();
 				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(no[1][2] == '.' )
+					Button6.setIcon(nought);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(no[1][2] == '.' )
+					Button6.setIcon(null);
 			}
 		});
 		Button7.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(no[2][0] == '.' ) {
+				if(no[2][0] == '.' && !isBlock()) {
 					Button7.setIcon(nought);
 					no[2][0] = 'O';
 					blockButton();
+					playIA();
 				}
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(no[2][0] == '.' )
+					Button7.setIcon(nought);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(no[2][0] == '.' )
+					Button7.setIcon(null);
+			}
+			
 		});
 
 		Button8.addMouseListener(new MouseAdapter() {
 		@Override
-			public void mouseClicked(MouseEvent e) {
-				if(no[2][1] == '.' ) {
-					Button8.setIcon(nought);
-					no[2][1] = 'O';
-					blockButton();
-				}
+		public void mouseClicked(MouseEvent e) {
+			if(no[2][1] == '.' && !isBlock()) {
+				Button8.setIcon(nought);
+				no[2][1] = 'O';
+				blockButton();
+				playIA();
 			}
+		}
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			if(no[2][1] == '.' )
+				Button8.setIcon(nought);
+		}
+		@Override
+		public void mouseExited(MouseEvent e) {
+			if(no[2][1] == '.' )
+				Button8.setIcon(null);
+		}
 		});
 
 		Button9.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(no[2][2] == '.' ) {
+				if(no[2][2] == '.' && !isBlock()) {
 					Button9.setIcon(nought);
 					no[2][2] = 'O';
 					blockButton();
+					playIA();
 				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if(no[2][2] == '.' )
+					Button9.setIcon(nought);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(no[2][2] == '.' )
+					Button9.setIcon(null);
 			}
 		});
 	}
@@ -270,8 +374,10 @@ public class tabuleiro extends JPanel {
 	public JButton getExitButton() {
 		return Menu;
 	}
-
-	public void blockButton() {
+	/**
+	 * Bloqueia todos os botões assim que o usuario joga
+	 */
+	private void blockButton() {
 		Button1.setEnabled(false);
 		Button2.setEnabled(false);
 		Button3.setEnabled(false);
@@ -282,8 +388,10 @@ public class tabuleiro extends JPanel {
 		Button8.setEnabled(false);
 		Button9.setEnabled(false);
 	}
-
-	public void unblockButton() {
+	/**
+	 * desBloqueia todos os botões assim que a IA joga
+	 */
+	private void unblockButton() {
 			Button1.setEnabled(true);
 			Button2.setEnabled(true);
 			Button3.setEnabled(true);
@@ -294,4 +402,103 @@ public class tabuleiro extends JPanel {
 			Button8.setEnabled(true);
 			Button9.setEnabled(true);
 	}
+	
+	/**
+	 * retorna se os botões estrão bloqueados ou não
+	 */
+	private boolean isBlock() {
+		boolean op = false;
+		
+		if(Button1.isEnabled())
+			op = false;
+		else
+			op = true;
+		
+		return op;
+	}
+	
+	/**
+	 * IA joga
+	 */
+	private void playIA() {
+		//metodo para enviar string do estado para ia = getState();
+		//metodo para receber jogada da IA
+		//moveIA(posicao que a ia escolheu);
+		System.out.println(getState() + moveCount());
+		unblockButton(); //desbloqueia botões
+	}
+	
+	/**
+	 * passa o estado (que está em char) para uma string,
+	 * isso será mandado para a IA analisar
+	 * @return
+	 */
+	private String getState() {
+		String noSTR = "";
+		for(int i = 0; i < 3; i++) { //percorrer a matriz de caracteres
+			for(int j = 0; j < 3; j++) {
+				noSTR += this.no[i][j];
+			}
+		}
+		
+		return noSTR;
+	}
+	
+	/**
+	 * metodo para associar a jogada da IA
+	 * com algum dos botões
+	 */
+	private void moveIA(int pos) {
+		switch(pos) {
+			case 0:
+				Button1.setIcon(cross);
+				no[0][0] = 'X';
+				break;
+			case 1:
+				Button2.setIcon(cross);
+				no[0][1] = 'X';
+				break;
+			case 2:
+				Button3.setIcon(cross);
+				no[0][2] = 'X';
+				break;
+			case 3:
+				Button4.setIcon(cross);
+				no[1][0] = 'X';
+				break;
+			case 4:
+				Button5.setIcon(cross);
+				no[1][1] = 'X';
+				break;
+			case 5:
+				Button6.setIcon(cross);
+				no[1][2] = 'X';
+				break;
+			case 6:
+				Button7.setIcon(cross);
+				no[2][0] = 'X';
+				break;
+			case 7:
+				Button8.setIcon(cross);
+				no[2][1] = 'X';
+				break;
+			case 8:
+				Button9.setIcon(cross);
+				no[2][2] = 'X';
+				break;
+			default:
+				JOptionPane.showMessageDialog(null, "Erro na IA");
+				System.exit(1); //erro na IA retorna 1
+				break;
+		}
+	}
+	
+	/**
+	 * conta quantas jogadas há
+	 */
+	private int moveCount() {
+		String state = getState().replace(".", "");
+		return state.length();
+
+	}	
 }
