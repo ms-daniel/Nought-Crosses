@@ -68,7 +68,7 @@ public class VeIA {
                     grau = mapa_prox_jogada[i].matches(mapa_vitoria[c].label);
                     if(grau == numJogadas && mapa_vitoria[c].numJogadas == numJogadas+1){
                         for(int z = 0; z < 9; z++){
-                            if(label.charAt(z) == meuCaractere ^ mapa_vitoria[c].label.charAt(z) == meuCaractere){
+                            if(label.charAt(z) == meuCaractere ^ mapa_prox_jogada[i].label.charAt(z) == meuCaractere){
                                 return z;
                             }
                         }
@@ -182,7 +182,7 @@ public class VeIA {
                         grau = mapa_prox_jogada[i].matches(mapa_vitoria[c].label);
                         if(grau == numJogadas && mapa_vitoria[c].numJogadas == numJogadas+1){
                             for(int z = 0; z < 9; z++){
-                                if(label.charAt(z) == meuCaractere ^ mapa_vitoria[c].label.charAt(z) == meuCaractere){
+                                if(label.charAt(z) == meuCaractere ^ mapa_prox_jogada[i].label.charAt(z) == meuCaractere){
                                     return z;
                                 }
                             }
