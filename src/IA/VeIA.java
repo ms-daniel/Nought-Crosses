@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 public class VeIA {
     
@@ -10,6 +11,10 @@ public class VeIA {
     private Vertex mapa_vitoria[] = new Vertex[5477];
     private Vertex mapa_derrota[] = new Vertex[5477];
     private Vertex mapa_prox_jogada[] = new Vertex[5477];
+
+    private Random random = new Random();
+    private int randomCantos[] = {0,2,6,8};
+    private int randomMeios[] = {1,3,5,7};
 
     private char meuCaractere;
     private char opCaractere;
@@ -102,6 +107,12 @@ public class VeIA {
                     return 4;
                 }
             }
+            int aux = randomCantos[random.nextInt(4)];
+            // peso medio nas bordas
+            for(i = 0; i < c_jogadas; i++){
+                if(aux%2 == 0 && mapa_prox_jogada[i].label.charAt(aux) == meuCaractere)
+                    return aux;
+            }
             // jogada com peso medio em cenario trivial
             for(i = 0; i < c_jogadas; i++){
                 for(int c = 0; c < 9; c++){
@@ -109,6 +120,11 @@ public class VeIA {
                         return c;
                     }
                 }
+            }
+            aux = randomMeios[random.nextInt(4)];
+            for(i = 0; i < c_jogadas; i++){
+                if(aux%2 != 0 && mapa_prox_jogada[i].label.charAt(aux) == meuCaractere)
+                    return aux;
             }
             // jogada com peso baixo em cenario trivial
             for(i = 0; i < c_jogadas; i++){
@@ -150,7 +166,12 @@ public class VeIA {
                 if(mapa_prox_jogada[i].label.charAt(4) == meuCaractere)
                     return 4;
             }
+            int aux = randomCantos[random.nextInt(4)];
             // peso medio nas bordas
+            for(i = 0; i < c_jogadas; i++){
+                if(aux%2 == 0 && mapa_prox_jogada[i].label.charAt(aux) == meuCaractere)
+                    return aux;
+            }
             for(i = 0; i < c_jogadas; i++){
                 for(int c = 0; c < 9; c++){
                     if(c%2 == 0 && mapa_prox_jogada[i].label.charAt(c) == meuCaractere)
@@ -158,6 +179,11 @@ public class VeIA {
                 }
             }
             // peso baixo nos tracados
+            aux = randomMeios[random.nextInt(4)];
+            for(i = 0; i < c_jogadas; i++){
+                if(aux%2 != 0 && mapa_prox_jogada[i].label.charAt(aux) == meuCaractere)
+                    return aux;
+            }
             for(i = 0; i < c_jogadas; i++){
                 for(int c = 0; c < 9; c++){
                     if(c%2 != 0 && mapa_prox_jogada[i].label.charAt(c) == meuCaractere)
@@ -215,6 +241,11 @@ public class VeIA {
                     }
                 }
                 // jogada com peso medio em cenario trivial
+                int aux = randomCantos[random.nextInt(4)];
+                for(i = 0; i < c_jogadas; i++){
+                    if(aux%2 == 0 && mapa_prox_jogada[i].label.charAt(aux) == meuCaractere && label.charAt(aux) != meuCaractere)
+                        return aux;
+                }
                 for(i = 0; i < c_jogadas; i++){
                     for(int c = 0; c < 9; c++){
                         if(c%2 == 0 && mapa_prox_jogada[i].label.charAt(c) == meuCaractere && label.charAt(c) != meuCaractere){
@@ -223,6 +254,11 @@ public class VeIA {
                     }
                 }
                 // jogada com peso baixo em cenario trivial
+                aux = randomMeios[random.nextInt(4)];
+                for(i = 0; i < c_jogadas; i++){
+                    if(aux%2 != 0 && mapa_prox_jogada[i].label.charAt(aux) == meuCaractere && label.charAt(aux) != meuCaractere)
+                        return aux;
+                }
                 for(i = 0; i < c_jogadas; i++){
                     for(int c = 0; c < 9; c++){
                         if(c%2 != 0 && mapa_prox_jogada[i].label.charAt(c) == meuCaractere && label.charAt(c) != meuCaractere){
@@ -282,12 +318,22 @@ public class VeIA {
                     }
                 }
                 // jogada com peso medio em cenario trivial
+                int aux = randomCantos[random.nextInt(4)];
+                for(i = 0; i < c_jogadas; i++){
+                    if(aux%2 == 0 && mapa_prox_jogada[i].label.charAt(aux) == meuCaractere && label.charAt(aux) != meuCaractere)
+                        return aux;
+                }
                 for(i = 0; i < c_jogadas; i++){
                     for(int c = 0; c < 9; c++){
                         if(c%2 == 0 && mapa_prox_jogada[i].label.charAt(c) == meuCaractere && label.charAt(c) != meuCaractere){
                             return c;
                         }
                     }
+                }
+                aux = randomMeios[random.nextInt(4)];
+                for(i = 0; i < c_jogadas; i++){
+                    if(aux%2 != 0 && mapa_prox_jogada[i].label.charAt(aux) == meuCaractere && label.charAt(aux) != meuCaractere)
+                        return aux;
                 }
                 // jogada com peso baixo em cenario trivial
                 for(i = 0; i < c_jogadas; i++){
