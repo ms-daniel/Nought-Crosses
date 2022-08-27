@@ -12,6 +12,8 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.border.SoftBevelBorder;
@@ -54,6 +56,7 @@ public class tabuleiro extends JPanel {
 	 * Create the panel.
 	 */
 	public tabuleiro() {
+		
 		try {
 			inteligencia = new VeIA();
 		} catch (IOException e1) {
@@ -66,16 +69,6 @@ public class tabuleiro extends JPanel {
 		setLocale(new Locale("pt", "BR"));
 		setBounds(new Rectangle(0, 0, 600, 600));
 		setLayout(null);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				unblockButton();
-			}
-		});
-		btnNewButton.setBounds(262, 545, 85, 21);
-		add(btnNewButton);
 
 		Button1 = new JButton("");
 		Button1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -431,10 +424,17 @@ public class tabuleiro extends JPanel {
 	 * IA joga
 	 */
 	private void playIA() {
-		moveIA(inteligencia.jogue(getState(), moveCount()));
-		//moveIA(posicao que a ia escolheu);
-		System.out.println(getState() + moveCount());
-		unblockButton(); //desbloqueia botões
+		try {
+			TimeUnit.SECONDS.sleep(0);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			moveIA(inteligencia.jogue(getState(), moveCount()));
+			//moveIA(posicao que a ia escolheu);
+			System.out.println(getState() + moveCount());
+			unblockButton(); //desbloqueia botões
+		}
 	}
 	
 	/**
@@ -509,6 +509,5 @@ public class tabuleiro extends JPanel {
 	private int moveCount() {
 		String state = getState().replace(".", "");
 		return state.length();
-
 	}	
 }

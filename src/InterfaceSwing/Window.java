@@ -19,6 +19,8 @@ public class Window extends JFrame {
 	private JLabel playButton;
 	private JButton exitTButton;
 	private tabuleiro tabuleiro;
+	private menu panelMenu = new menu();
+	private JFrame jan;
 
 	/**
 	 * Launch the application.
@@ -50,25 +52,29 @@ public class Window extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		//menu panelMenu = new menu();
-		//contentPane.add(panelMenu);
+		contentPane.add(panelMenu);
 		
-		//tabuleiro = new tabuleiro();
-		//exitTButton = tabuleiro.getExitButton();
-		
-		/* playButton = panelMenu.getPlayLabel();
+		playButton = panelMenu.getPlayLabel();
 		
 		playButton.addMouseListener(new MouseAdapter() {
 			//quando o mouse está emcima da label
 			//ao clicar no label
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				tabuleiro = new tabuleiro();
+				exitTabu(tabuleiro.getExitButton());
+				
 				contentPane.remove(panelMenu); //remove panel antigo
 				contentPane.add(tabuleiro); //cria novo panel (do tabuleiro)
 				repaint(); //"repinta" toda a Janela para poder mostrar o panel do tabuleiro
 			}
 		});
 		
+		
+	}
+	
+	public void exitTabu(JButton exit) {
+		exitTButton = exit;
 		exitTButton.addMouseListener(new MouseAdapter() {
 			//quando o mouse está emcima da label
 			//ao clicar no label
@@ -79,13 +85,6 @@ public class Window extends JFrame {
 				repaint(); //"repinta" toda a Janela para poder mostrar o panel do tabuleiro
 			}
 		});
-		*/
-		
-
-		
-		
-		tabuleiro tabuleiro = new tabuleiro();
-		contentPane.add(tabuleiro);
 	}
 
 }
