@@ -34,11 +34,13 @@ import java.io.IOException;
 public class tabuleiro extends JPanel {
 
 	private VeIA inteligencia;
+	private VeIA inteligencia2;
 	private Cursor handCursor = new Cursor(Cursor.HAND_CURSOR);
 	private Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
 	private ImageIcon cross = new ImageIcon("resources\\cross1.png");
 	private ImageIcon nought = new ImageIcon("resources\\nought1.png");
 	private JButton Menu;
+	private int winN;
 	private JButton Button1;
 	private JButton Button2;
 	private JButton Button3;
@@ -54,11 +56,15 @@ public class tabuleiro extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @param 1 = player vs ia e 2 = ia vs ia
 	 */
-	public tabuleiro() {
+	public tabuleiro(int mode) {
 		
 		try {
 			inteligencia = new VeIA();
+			if(mode == 2) {
+				inteligencia2 = new VeIA();
+			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -66,7 +72,6 @@ public class tabuleiro extends JPanel {
 		
 		setMinimumSize(new Dimension(600, 600));
 		setMaximumSize(new Dimension(600, 600));
-		setLocale(new Locale("pt", "BR"));
 		setBounds(new Rectangle(0, 0, 600, 600));
 		setLayout(null);
 
@@ -176,202 +181,318 @@ public class tabuleiro extends JPanel {
 		add(backgroundLabel);
 
 		// ações
-		Button1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(no[0][0] == '.' && !isBlock()) {
-					Button1.setIcon(nought);
-					no[0][0] = 'O';
-					blockButton();
-					playIA();
+		if(mode == 1) {
+			Button1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(no[0][0] == '.' && !isBlock()) {
+						if(!verificaGanhador()) {
+							Button1.setIcon(nought);
+							no[0][0] = 'O';
+							blockButton();
+							playIA(1,1);
+						} else {
+							winN = whoWins();
+							if(winN == 0)
+								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+							else if(winN == 1)
+								JOptionPane.showMessageDialog(null, "Você perdeu!");
+							else
+								JOptionPane.showMessageDialog(null, "Empate!");
+							
+							System.exit(0);
+						}
+					}
 				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if(no[0][0] == '.' )
-					Button1.setIcon(nought);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(no[0][0] == '.' )
-					Button1.setIcon(null);
-			}
-		});
-
-		Button2.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(no[0][1] == '.' && !isBlock()) {
-					Button2.setIcon(nought);
-					no[0][1] = 'O';
-					blockButton();
-					playIA();
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					if(no[0][0] == '.' )
+						Button1.setIcon(nought);
 				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if(no[0][1] == '.' )
-					Button2.setIcon(nought);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(no[0][1] == '.' )
-					Button2.setIcon(null);
-			}
-		});
-		Button3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				if(no[0][2] == '.' && !isBlock()) {
-					Button3.setIcon(nought);
-					no[0][2] = 'O';
-					blockButton();
-					playIA();
+				@Override
+				public void mouseExited(MouseEvent e) {
+					if(no[0][0] == '.' )
+						Button1.setIcon(null);
 				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if(no[0][2] == '.' )
-					Button3.setIcon(nought);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(no[0][2] == '.' )
-					Button3.setIcon(null);
-			}
-		});
-		Button4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(no[1][0] == '.' && !isBlock() ) {
-					Button4.setIcon(nought);
-					no[1][0] = 'O';
-					blockButton();
-					playIA();
+			});
+	
+			Button2.addMouseListener(new MouseAdapter() {
+	
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(no[0][1] == '.' && !isBlock()) {
+						if(!verificaGanhador()) {
+							Button2.setIcon(nought);
+							no[0][1] = 'O';
+							blockButton();
+							playIA(1,1);
+						} else {
+							winN = whoWins();
+							if(winN == 0)
+								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+							else if(winN == 1)
+								JOptionPane.showMessageDialog(null, "Você perdeu!");
+							else
+								JOptionPane.showMessageDialog(null, "Empate!");
+							
+							System.exit(0);
+						}
+					}
 				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if(no[1][0] == '.' )
-					Button4.setIcon(nought);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(no[1][0] == '.' )
-					Button4.setIcon(null);
-			}
-		});
-		
-		Button5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(no[1][1] == '.' && !isBlock()) {
-					Button5.setIcon(nought);
-					no[1][1] = 'O';
-					blockButton();
-					playIA();
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					if(no[0][1] == '.' )
+						Button2.setIcon(nought);
 				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if(no[1][1] == '.' )
-					Button5.setIcon(nought);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(no[1][1] == '.' )
-					Button5.setIcon(null);
-			}
-		});
-		Button6.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(no[1][2] == '.' && !isBlock()) {
-					Button6.setIcon(nought);
-					no[1][2] = 'O';
-					blockButton();
-					playIA();
+				@Override
+				public void mouseExited(MouseEvent e) {
+					if(no[0][1] == '.' )
+						Button2.setIcon(null);
 				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if(no[1][2] == '.' )
-					Button6.setIcon(nought);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(no[1][2] == '.' )
-					Button6.setIcon(null);
-			}
-		});
-		Button7.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(no[2][0] == '.' && !isBlock()) {
-					Button7.setIcon(nought);
-					no[2][0] = 'O';
-					blockButton();
-					playIA();
+			});
+			Button3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					if(no[0][2] == '.' && !isBlock()) {
+						if(!verificaGanhador()) {
+							Button3.setIcon(nought);
+							no[0][2] = 'O';
+							blockButton();
+							playIA(1,1);
+						} else {
+							winN = whoWins();
+							if(winN == 0)
+								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+							else if(winN == 1)
+								JOptionPane.showMessageDialog(null, "Você perdeu!");
+							else
+								JOptionPane.showMessageDialog(null, "Empate!");
+							
+							System.exit(0);
+						}
+					}
 				}
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if(no[2][0] == '.' )
-					Button7.setIcon(nought);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				if(no[2][0] == '.' )
-					Button7.setIcon(null);
-			}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					if(no[0][2] == '.' )
+						Button3.setIcon(nought);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					if(no[0][2] == '.' )
+						Button3.setIcon(null);
+				}
+			});
+			Button4.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(no[1][0] == '.' && !isBlock() ) {
+						if(!verificaGanhador()) {
+							Button4.setIcon(nought);
+							no[1][0] = 'O';
+							blockButton();
+							playIA(1,1);
+						} else {
+							winN = whoWins();
+							if(winN == 0)
+								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+							else if(winN == 1)
+								JOptionPane.showMessageDialog(null, "Você perdeu!");
+							else
+								JOptionPane.showMessageDialog(null, "Empate!");
+							
+							System.exit(0);
+						}
+					}
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					if(no[1][0] == '.' )
+						Button4.setIcon(nought);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					if(no[1][0] == '.' )
+						Button4.setIcon(null);
+				}
+			});
 			
-		});
-
-		Button8.addMouseListener(new MouseAdapter() {
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			if(no[2][1] == '.' && !isBlock()) {
-				Button8.setIcon(nought);
-				no[2][1] = 'O';
-				blockButton();
-				playIA();
-			}
-		}
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			if(no[2][1] == '.' )
-				Button8.setIcon(nought);
-		}
-		@Override
-		public void mouseExited(MouseEvent e) {
-			if(no[2][1] == '.' )
-				Button8.setIcon(null);
-		}
-		});
-
-		Button9.addMouseListener(new MouseAdapter() {
+			Button5.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(no[1][1] == '.' && !isBlock()) {
+						if(!verificaGanhador()) {
+							Button5.setIcon(nought);
+							no[1][1] = 'O';
+							blockButton();
+							playIA(1,1);
+						} else {
+							winN = whoWins();
+							if(winN == 0)
+								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+							else if(winN == 1)
+								JOptionPane.showMessageDialog(null, "Você perdeu!");
+							else
+								JOptionPane.showMessageDialog(null, "Empate!");
+							
+							System.exit(0);
+						}
+					}
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					if(no[1][1] == '.' )
+						Button5.setIcon(nought);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					if(no[1][1] == '.' )
+						Button5.setIcon(null);
+				}
+			});
+			Button6.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(no[1][2] == '.' && !isBlock()) {
+						if(!verificaGanhador()) {
+							Button6.setIcon(nought);
+							no[1][2] = 'O';
+							blockButton();
+							playIA(1,1);
+						} else {
+							winN = whoWins();
+							if(winN == 0)
+								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+							else if(winN == 1)
+								JOptionPane.showMessageDialog(null, "Você perdeu!");
+							else
+								JOptionPane.showMessageDialog(null, "Empate!");
+							
+							System.exit(0);
+						}
+					}
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					if(no[1][2] == '.' )
+						Button6.setIcon(nought);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					if(no[1][2] == '.' )
+						Button6.setIcon(null);
+				}
+			});
+			Button7.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(no[2][0] == '.' && !isBlock()) {
+						if(!verificaGanhador()) {
+							Button7.setIcon(nought);
+							no[2][0] = 'O';
+							blockButton();
+							playIA(1,1);
+						} else {
+							winN = whoWins();
+							if(winN == 0)
+								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+							else if(winN == 1)
+								JOptionPane.showMessageDialog(null, "Você perdeu!");
+							else
+								JOptionPane.showMessageDialog(null, "Empate!");
+							
+							System.exit(0);
+						}
+					}
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					if(no[2][0] == '.' )
+						Button7.setIcon(nought);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					if(no[2][0] == '.' )
+						Button7.setIcon(null);
+				}
+				
+			});
+	
+			Button8.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(no[2][2] == '.' && !isBlock()) {
-					Button9.setIcon(nought);
-					no[2][2] = 'O';
-					blockButton();
-					playIA();
+				if(no[2][1] == '.' && !isBlock()) {
+					if(!verificaGanhador()) {
+						Button8.setIcon(nought);
+						no[2][1] = 'O';
+						blockButton();
+						playIA(1,1);
+					} else {
+						winN = whoWins();
+						if(winN == 0)
+							JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+						else if(winN == 1)
+							JOptionPane.showMessageDialog(null, "Você perdeu!");
+						else
+							JOptionPane.showMessageDialog(null, "Empate!");
+						
+						System.exit(0);
+					}
 				}
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				if(no[2][2] == '.' )
-					Button9.setIcon(nought);
+				if(no[2][1] == '.' )
+					Button8.setIcon(nought);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if(no[2][2] == '.' )
-					Button9.setIcon(null);
+				if(no[2][1] == '.' )
+					Button8.setIcon(null);
 			}
-		});
+			});
+	
+			Button9.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(no[2][2] == '.' && !isBlock()) {
+						if(!verificaGanhador()) {
+							Button9.setIcon(nought);
+							no[2][2] = 'O';
+							blockButton();
+							playIA(1,1);
+						} else {
+							winN = whoWins();
+							if(winN == 0)
+								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+							else if(winN == 1)
+								JOptionPane.showMessageDialog(null, "Você perdeu!");
+							else
+								JOptionPane.showMessageDialog(null, "Empate!");
+							
+							System.exit(0);
+						}
+					}
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					if(no[2][2] == '.' )
+						Button9.setIcon(nought);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					if(no[2][2] == '.' )
+						Button9.setIcon(null);
+				}
+			});
+		} /*else if(mode == 2) {
+			while(!verificaGanhador()) {
+				playIA(1,2);
+				playIA(2,2);
+			}
+		}*/
+
 	}
 
 	public JButton getExitButton() {
@@ -422,15 +543,23 @@ public class tabuleiro extends JPanel {
 	
 	/**
 	 * IA joga
+	 * @param qual IA irá jogar
+	 * @param qual o modo de jogo
 	 */
-	private void playIA() {
+	private synchronized void playIA(int ia, int mode) {
 		try {
-			TimeUnit.SECONDS.sleep(0);
+			if(mode == 2)
+				TimeUnit.SECONDS.sleep(2);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			moveIA(inteligencia.jogue(getState(), moveCount()));
+			System.out.println(getState());
+			
+			if(ia == 1)
+				moveIA(inteligencia.jogue(getState(), moveCount()));
+			else
+				moveIA(inteligencia2.jogue(getState(), moveCount()));
 			//moveIA(posicao que a ia escolheu);
 			System.out.println(getState() + moveCount());
 			unblockButton(); //desbloqueia botões
@@ -497,16 +626,102 @@ public class tabuleiro extends JPanel {
 				no[2][2] = 'X';
 				break;
 			default:
-				JOptionPane.showMessageDialog(null, "Erro na IA");
-				System.exit(1); //erro na IA retorna 1
+				if(verificaGanhador()) {
+					winN = whoWins();
+					if(winN == 0)
+						JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+					else if(winN == 1)
+						JOptionPane.showMessageDialog(null, "Você perdeu!");
+					else
+						JOptionPane.showMessageDialog(null, "Empate!");
+					
+					System.exit(0);
+				}else {
+					JOptionPane.showMessageDialog(null, "Erro na IA");
+					System.exit(1); //erro na IA retorna 1
+				}
 				break;
 		}
+	}
+	/*
+	 * verifica se há um vencedor
+	 */
+	private boolean verificaGanhador() {
+		boolean win = false;
+		
+		if(		 (no[0][0] == no[0][1]) && (no[0][1] == no[0][2]) && no[0][0] != '.') {//linhas
+			win = true;
+		}else if((no[1][0] == no[1][1]) && (no[1][1] == no[1][2]) && no[1][0] != '.'){
+			win = true;
+		}else if((no[2][0] == no[2][1]) && (no[2][1] == no[2][2]) && no[2][0] != '.') { 
+			win = true;
+		}else if((no[0][0] == no[1][0]) && (no[1][0] == no[2][0]) && no[0][0] != '.') { //colunas
+			win = true;
+		}else if((no[0][1] == no[1][1]) && (no[1][1] == no[2][1]) && no[0][1] != '.') { 
+			win = true;
+		}else if((no[0][2] == no[1][2]) && (no[1][2] == no[2][2]) && no[0][2] != '.') {
+			win = true;
+		}else if((no[0][0] == no[1][1]) && (no[1][1] == no[2][2]) && no[0][0] != '.') { //diagonais
+			win = true;
+		}else if((no[0][2] == no[1][1]) && (no[1][1] == no[2][0]) && no[0][2] != '.') { //diagonais
+			win = true;
+		}
+		int qtM = moveCount();
+		if(qtM == 9)
+			win = true;
+		
+		return win;
+	}
+	/**
+	 * 
+	 * @return 0 = player 1 = IA 2 = empate
+	 */
+	private int whoWins() {
+		int winner = 0;
+		
+		if(		 (no[0][0] == no[0][1]) && (no[0][1] == no[0][2]) && no[0][0] == 'O') {//linhas
+			
+		}else if((no[1][0] == no[1][1]) && (no[1][1] == no[1][2]) && no[1][0] == 'O'){
+	
+		}else if((no[2][0] == no[2][1]) && (no[2][1] == no[2][2]) && no[2][0] == 'O') { 
+
+		}else if((no[0][0] == no[1][0]) && (no[1][0] == no[2][0]) && no[0][0] == 'O') { //colunas
+
+		}else if((no[0][1] == no[1][1]) && (no[1][1] == no[2][1]) && no[0][1] == 'O') { 
+
+		}else if((no[0][2] == no[1][2]) && (no[1][2] == no[2][2]) && no[0][2] == 'O') {
+
+		}else if((no[0][0] == no[1][1]) && (no[1][1] == no[2][2]) && no[0][0] == 'O') { //diagonais
+
+		}else if((no[0][2] == no[1][1]) && (no[1][1] == no[2][0]) && no[0][2] == 'O') { //diagonais
+
+		}else if(		 (no[0][0] == no[0][1]) && (no[0][1] == no[0][2]) && no[0][0] == 'X') {//linhas
+			winner = 1;
+		}else if((no[1][0] == no[1][1]) && (no[1][1] == no[1][2]) && no[1][0] == 'X'){
+			winner = 1;
+		}else if((no[2][0] == no[2][1]) && (no[2][1] == no[2][2]) && no[2][0] == 'X') { 
+			winner = 1;
+		}else if((no[0][0] == no[1][0]) && (no[1][0] == no[2][0]) && no[0][0] == 'X') { //colunas
+			winner = 1;
+		}else if((no[0][1] == no[1][1]) && (no[1][1] == no[2][1]) && no[0][1] == 'X') { 
+			winner = 1;
+		}else if((no[0][2] == no[1][2]) && (no[1][2] == no[2][2]) && no[0][2] == 'X') {
+			winner = 1;
+		}else if((no[0][0] == no[1][1]) && (no[1][1] == no[2][2]) && no[0][0] == 'X') { //diagonais
+			winner = 1;
+		}else if((no[0][2] == no[1][1]) && (no[1][1] == no[2][0]) && no[0][2] == 'X') { //diagonais
+			winner = 1;
+		} else {
+			winner = 2;
+		}
+		
+		return winner;
 	}
 	
 	/**
 	 * conta quantas jogadas há
 	 */
-	private int moveCount() {
+	private int moveCount() { //depois usar uma variavel para contar os movimentos ao inves de um metodo
 		String state = getState().replace(".", "");
 		return state.length();
 	}	

@@ -17,6 +17,8 @@ public class Window extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel playButton;
+	private JLabel playervsiaButton;
+	private JLabel iavsiaButton;
 	private JButton exitTButton;
 	private tabuleiro tabuleiro;
 	private menu panelMenu = new menu();
@@ -55,18 +57,49 @@ public class Window extends JFrame {
 		contentPane.add(panelMenu);
 		
 		playButton = panelMenu.getPlayLabel();
+		playervsiaButton = panelMenu.getPvsIA();
+		iavsiaButton = panelMenu.getIAvsIA();
 		
 		playButton.addMouseListener(new MouseAdapter() {
 			//quando o mouse está emcima da label
 			//ao clicar no label
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				tabuleiro = new tabuleiro();
+				panelMenu.NextLabel();
+				/*tabuleiro = new tabuleiro();
+				exitTabu(tabuleiro.getExitButton());
+				
+				contentPane.remove(panelMenu); //remove panel antigo
+				contentPane.add(tabuleiro); //cria novo panel (do tabuleiro)
+				repaint(); //"repinta" toda a Janela para poder mostrar o panel do tabuleiro*/
+			}
+		});
+		
+		playervsiaButton.addMouseListener(new MouseAdapter() {
+			//quando o mouse está emcima da label
+			//ao clicar no label
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tabuleiro = new tabuleiro(1);
 				exitTabu(tabuleiro.getExitButton());
 				
 				contentPane.remove(panelMenu); //remove panel antigo
 				contentPane.add(tabuleiro); //cria novo panel (do tabuleiro)
 				repaint(); //"repinta" toda a Janela para poder mostrar o panel do tabuleiro
+			}
+		});
+		
+		iavsiaButton.addMouseListener(new MouseAdapter() {
+			//quando o mouse está emcima da label
+			//ao clicar no label
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tabuleiro = new tabuleiro(2);
+				exitTabu(tabuleiro.getExitButton());
+				
+				contentPane.remove(panelMenu); //remove panel antigo
+				contentPane.add(tabuleiro); //cria novo panel (do tabuleiro)
+				repaint();
 			}
 		});
 		
