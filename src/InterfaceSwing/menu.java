@@ -47,7 +47,7 @@ public class menu extends JPanel {
 		IAvsIALabel.setVisible(false);
 		add(IAvsIALabel);
 		
-		//cria label para por imagem da opção jogar
+		//cria label para por imagem da opï¿½ï¿½o jogar
 		playLabel = new JLabel("");
 		playLabel.setIcon(new ImageIcon("resources\\jogar.png"));
 		playLabel.setBounds(new Rectangle(1, 0, 200, 100));
@@ -55,7 +55,7 @@ public class menu extends JPanel {
 		playLabel.setVisible(true);
 		add(playLabel);
 		
-		////cria label para por imagem da opção sair
+		////cria label para por imagem da opï¿½ï¿½o sair
 		exitLabel = new JLabel("");
 		exitLabel.setIcon(new ImageIcon("resources\\sair.png"));
 		exitLabel.setBounds(new Rectangle(1, 0, 200, 100));
@@ -69,9 +69,9 @@ public class menu extends JPanel {
 		add(backgroundLabel);
 		
 		
-		//ações
+		//aï¿½ï¿½es
 		playLabel.addMouseListener(new MouseAdapter() {
-			//quando o mouse está emcima da label
+			//quando o mouse estï¿½ emcima da label
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				playLabel.setIcon(new ImageIcon("resources\\jogarGlow.png"));
@@ -91,7 +91,7 @@ public class menu extends JPanel {
 		});
 		
 		PlayervsIALabel.addMouseListener(new MouseAdapter() {
-			//quando o mouse está emcima da label
+			//quando o mouse estï¿½ emcima da label
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				PlayervsIALabel.setIcon(new ImageIcon("resources\\playervsiaGlow.png"));
@@ -111,7 +111,7 @@ public class menu extends JPanel {
 		});
 		
 		IAvsIALabel.addMouseListener(new MouseAdapter() {
-			//quando o mouse está emcima da label
+			//quando o mouse estï¿½ emcima da label
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				IAvsIALabel.setIcon(new ImageIcon("resources\\iavsiaGlow.png"));
@@ -131,7 +131,7 @@ public class menu extends JPanel {
 		});
 		
 		exitLabel.addMouseListener(new MouseAdapter() {
-			//quando o mouse está emcima da label
+			//quando o mouse estï¿½ emcima da label
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				exitLabel.setIcon(new ImageIcon("resources\\sairGlow.png"));
@@ -173,8 +173,8 @@ public class menu extends JPanel {
 		return IAvsIALabel;
 	}
 	/**
-	 * esconde opções de jogar e sair
-	 * e mostra opções de jogar com ia
+	 * esconde opï¿½ï¿½es de jogar e sair
+	 * e mostra opï¿½ï¿½es de jogar com ia
 	 * ou ver ia vs ia
 	 */
 	public void NextLabel() {
@@ -182,10 +182,10 @@ public class menu extends JPanel {
 		exitLabel.setVisible(false);
 		
 		PlayervsIALabel.setVisible(true);
-		//IAvsIALabel.setVisible(true);
+		IAvsIALabel.setVisible(true);
 	}
 	/**
-	 * esconde opções de jogar com ia
+	 * esconde opï¿½ï¿½es de jogar com ia
 	 * ou ia vs ia, voltando para o menu
 	 * anterior
 	 */
@@ -194,6 +194,6 @@ public class menu extends JPanel {
 		exitLabel.setVisible(true);
 		
 		PlayervsIALabel.setVisible(false);
-		//IAvsIALabel.setVisible(false);
+		IAvsIALabel.setVisible(false);
 	}
 }

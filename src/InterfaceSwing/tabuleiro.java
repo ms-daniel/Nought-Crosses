@@ -180,7 +180,7 @@ public class tabuleiro extends JPanel {
 		backgroundLabel.setBounds(0, 0, 600, 600);
 		add(backgroundLabel);
 
-		// ações
+		// aï¿½ï¿½es
 		if(mode == 1) {
 			Button1.addMouseListener(new MouseAdapter() {
 				@Override
@@ -194,9 +194,9 @@ public class tabuleiro extends JPanel {
 						} else {
 							winN = whoWins();
 							if(winN == 0)
-								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+								JOptionPane.showMessageDialog(null, "Parabï¿½ns! Vocï¿½ ganhou!");
 							else if(winN == 1)
-								JOptionPane.showMessageDialog(null, "Você perdeu!");
+								JOptionPane.showMessageDialog(null, "Vocï¿½ perdeu!");
 							else
 								JOptionPane.showMessageDialog(null, "Empate!");
 							
@@ -229,9 +229,9 @@ public class tabuleiro extends JPanel {
 						} else {
 							winN = whoWins();
 							if(winN == 0)
-								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+								JOptionPane.showMessageDialog(null, "Parabï¿½ns! Vocï¿½ ganhou!");
 							else if(winN == 1)
-								JOptionPane.showMessageDialog(null, "Você perdeu!");
+								JOptionPane.showMessageDialog(null, "Vocï¿½ perdeu!");
 							else
 								JOptionPane.showMessageDialog(null, "Empate!");
 							
@@ -263,9 +263,9 @@ public class tabuleiro extends JPanel {
 						} else {
 							winN = whoWins();
 							if(winN == 0)
-								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+								JOptionPane.showMessageDialog(null, "Parabï¿½ns! Vocï¿½ ganhou!");
 							else if(winN == 1)
-								JOptionPane.showMessageDialog(null, "Você perdeu!");
+								JOptionPane.showMessageDialog(null, "Vocï¿½ perdeu!");
 							else
 								JOptionPane.showMessageDialog(null, "Empate!");
 							
@@ -296,9 +296,9 @@ public class tabuleiro extends JPanel {
 						} else {
 							winN = whoWins();
 							if(winN == 0)
-								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+								JOptionPane.showMessageDialog(null, "Parabï¿½ns! Vocï¿½ ganhou!");
 							else if(winN == 1)
-								JOptionPane.showMessageDialog(null, "Você perdeu!");
+								JOptionPane.showMessageDialog(null, "Vocï¿½ perdeu!");
 							else
 								JOptionPane.showMessageDialog(null, "Empate!");
 							
@@ -330,9 +330,9 @@ public class tabuleiro extends JPanel {
 						} else {
 							winN = whoWins();
 							if(winN == 0)
-								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+								JOptionPane.showMessageDialog(null, "Parabï¿½ns! Vocï¿½ ganhou!");
 							else if(winN == 1)
-								JOptionPane.showMessageDialog(null, "Você perdeu!");
+								JOptionPane.showMessageDialog(null, "Vocï¿½ perdeu!");
 							else
 								JOptionPane.showMessageDialog(null, "Empate!");
 							
@@ -363,9 +363,9 @@ public class tabuleiro extends JPanel {
 						} else {
 							winN = whoWins();
 							if(winN == 0)
-								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+								JOptionPane.showMessageDialog(null, "Parabï¿½ns! Vocï¿½ ganhou!");
 							else if(winN == 1)
-								JOptionPane.showMessageDialog(null, "Você perdeu!");
+								JOptionPane.showMessageDialog(null, "Vocï¿½ perdeu!");
 							else
 								JOptionPane.showMessageDialog(null, "Empate!");
 							
@@ -396,9 +396,9 @@ public class tabuleiro extends JPanel {
 						} else {
 							winN = whoWins();
 							if(winN == 0)
-								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+								JOptionPane.showMessageDialog(null, "Parabï¿½ns! Vocï¿½ ganhou!");
 							else if(winN == 1)
-								JOptionPane.showMessageDialog(null, "Você perdeu!");
+								JOptionPane.showMessageDialog(null, "Vocï¿½ perdeu!");
 							else
 								JOptionPane.showMessageDialog(null, "Empate!");
 							
@@ -431,9 +431,9 @@ public class tabuleiro extends JPanel {
 					} else {
 						winN = whoWins();
 						if(winN == 0)
-							JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+							JOptionPane.showMessageDialog(null, "Parabï¿½ns! Vocï¿½ ganhou!");
 						else if(winN == 1)
-							JOptionPane.showMessageDialog(null, "Você perdeu!");
+							JOptionPane.showMessageDialog(null, "Vocï¿½ perdeu!");
 						else
 							JOptionPane.showMessageDialog(null, "Empate!");
 						
@@ -465,9 +465,9 @@ public class tabuleiro extends JPanel {
 						} else {
 							winN = whoWins();
 							if(winN == 0)
-								JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+								JOptionPane.showMessageDialog(null, "Parabï¿½ns! Vocï¿½ ganhou!");
 							else if(winN == 1)
-								JOptionPane.showMessageDialog(null, "Você perdeu!");
+								JOptionPane.showMessageDialog(null, "Vocï¿½ perdeu!");
 							else
 								JOptionPane.showMessageDialog(null, "Empate!");
 							
@@ -486,12 +486,12 @@ public class tabuleiro extends JPanel {
 						Button9.setIcon(null);
 				}
 			});
-		} /*else if(mode == 2) {
+		} else if(mode == 2) {
 			while(!verificaGanhador()) {
 				playIA(1,2);
 				playIA(2,2);
 			}
-		}*/
+		}
 
 	}
 
@@ -499,7 +499,7 @@ public class tabuleiro extends JPanel {
 		return Menu;
 	}
 	/**
-	 * Bloqueia todos os botões assim que o usuario joga
+	 * Bloqueia todos os botï¿½es assim que o usuario joga
 	 */
 	private void blockButton() {
 		Button1.setEnabled(false);
@@ -513,7 +513,7 @@ public class tabuleiro extends JPanel {
 		Button9.setEnabled(false);
 	}
 	/**
-	 * desBloqueia todos os botões assim que a IA joga
+	 * desBloqueia todos os botï¿½es assim que a IA joga
 	 */
 	private void unblockButton() {
 			Button1.setEnabled(true);
@@ -528,7 +528,7 @@ public class tabuleiro extends JPanel {
 	}
 	
 	/**
-	 * retorna se os botões estrão bloqueados ou não
+	 * retorna se os botï¿½es estrï¿½o bloqueados ou nï¿½o
 	 */
 	private boolean isBlock() {
 		boolean op = false;
@@ -543,10 +543,10 @@ public class tabuleiro extends JPanel {
 	
 	/**
 	 * IA joga
-	 * @param qual IA irá jogar
+	 * @param qual IA irï¿½ jogar
 	 * @param qual o modo de jogo
 	 */
-	private synchronized void playIA(int ia, int mode) {
+	private void playIA(int ia, int mode) {
 		try {
 			if(mode == 2)
 				TimeUnit.SECONDS.sleep(2);
@@ -555,20 +555,25 @@ public class tabuleiro extends JPanel {
 			e.printStackTrace();
 		}finally {
 			System.out.println(getState());
-			
-			if(ia == 1)
-				moveIA(inteligencia.jogue(getState(), moveCount()));
-			else
-				moveIA(inteligencia2.jogue(getState(), moveCount()));
+			if(mode == 1){
+				if(ia == 1)
+					moveIA(inteligencia.jogue(getState(), moveCount()));
+			}
+			else{
+				if(ia == 1)
+					moveIAO(inteligencia.jogue(getState(), moveCount()));
+				else
+					moveIA(inteligencia2.jogue(getState(), moveCount()));
+			}
 			//moveIA(posicao que a ia escolheu);
 			System.out.println(getState() + moveCount());
-			unblockButton(); //desbloqueia botões
+			unblockButton(); //desbloqueia botï¿½es
 		}
 	}
 	
 	/**
-	 * passa o estado (que está em char) para uma string,
-	 * isso será mandado para a IA analisar
+	 * passa o estado (que estï¿½ em char) para uma string,
+	 * isso serï¿½ mandado para a IA analisar
 	 * @return
 	 */
 	private String getState() {
@@ -584,7 +589,7 @@ public class tabuleiro extends JPanel {
 	
 	/**
 	 * metodo para associar a jogada da IA
-	 * com algum dos botões
+	 * com algum dos botï¿½es
 	 */
 	private void moveIA(int pos) {
 		System.out.println(pos);
@@ -629,9 +634,66 @@ public class tabuleiro extends JPanel {
 				if(verificaGanhador()) {
 					winN = whoWins();
 					if(winN == 0)
-						JOptionPane.showMessageDialog(null, "Parabéns! Você ganhou!");
+						JOptionPane.showMessageDialog(null, "Parabï¿½ns! Vocï¿½ ganhou!");
 					else if(winN == 1)
-						JOptionPane.showMessageDialog(null, "Você perdeu!");
+						JOptionPane.showMessageDialog(null, "Vocï¿½ perdeu!");
+					else
+						JOptionPane.showMessageDialog(null, "Empate!");
+					
+					System.exit(0);
+				}else {
+					JOptionPane.showMessageDialog(null, "Erro na IA");
+					System.exit(1); //erro na IA retorna 1
+				}
+				break;
+		}
+	}
+	private void moveIAO(int pos) {
+		System.out.println(pos);
+		switch(pos) {
+			case 0:
+				Button1.setIcon(nought);
+				no[0][0] = 'O';
+				break;
+			case 1:
+				Button2.setIcon(nought);
+				no[0][1] = 'O';
+				break;
+			case 2:
+				Button3.setIcon(nought);
+				no[0][2] = 'O';
+				break;
+			case 3:
+				Button4.setIcon(nought);
+				no[1][0] = 'O';
+				break;
+			case 4:
+				Button5.setIcon(nought);
+				no[1][1] = 'O';
+				break;
+			case 5:
+				Button6.setIcon(nought);
+				no[1][2] = 'O';
+				break;
+			case 6:
+				Button7.setIcon(nought);
+				no[2][0] = 'O';
+				break;
+			case 7:
+				Button8.setIcon(nought);
+				no[2][1] = 'O';
+				break;
+			case 8:
+				Button9.setIcon(nought);
+				no[2][2] = 'O';
+				break;
+			default:
+				if(verificaGanhador()) {
+					winN = whoWins();
+					if(winN == 0)
+						JOptionPane.showMessageDialog(null, "Parabï¿½ns! Vocï¿½ ganhou!");
+					else if(winN == 1)
+						JOptionPane.showMessageDialog(null, "Vocï¿½ perdeu!");
 					else
 						JOptionPane.showMessageDialog(null, "Empate!");
 					
@@ -644,7 +706,7 @@ public class tabuleiro extends JPanel {
 		}
 	}
 	/*
-	 * verifica se há um vencedor
+	 * verifica se hï¿½ um vencedor
 	 */
 	private boolean verificaGanhador() {
 		boolean win = false;
@@ -719,7 +781,7 @@ public class tabuleiro extends JPanel {
 	}
 	
 	/**
-	 * conta quantas jogadas há
+	 * conta quantas jogadas hï¿½
 	 */
 	private int moveCount() { //depois usar uma variavel para contar os movimentos ao inves de um metodo
 		String state = getState().replace(".", "");
