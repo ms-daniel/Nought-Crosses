@@ -115,6 +115,7 @@ public class Window extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				contentPane.remove(tabuleiro); //remove panel antigo
 				contentPane.add(panelMenu); //cria novo panel (do tabuleiro)
+				panelMenu.previousLabel();
 				repaint(); //"repinta" toda a Janela para poder mostrar o panel do tabuleiro
 			}
 		});
